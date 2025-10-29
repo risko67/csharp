@@ -14,7 +14,7 @@ internal class Program
             {
                 case "add":
                     {
-                    AddNumber:(list);   
+                    AddNumber:;   
                         break;
                     }
                 case "del":
