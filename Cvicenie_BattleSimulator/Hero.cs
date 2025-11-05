@@ -6,30 +6,41 @@ using System.Threading.Tasks;
 
 namespace Cvicenie_BattleSimulator
 {
-    public class Hero
+    internal class Hero
     {
-        public string Name { get; set; } = "Arnost";
-        public int HP { get; set; } = 100;
+        public string Name { get; set; } = "Arnost"; //Hero Name
+        public int HP { get; set; } = 100; //Health Points
+        public int DMG { get; set; } = 10; //Damage
+        public int ENG { get; set; } = 100; //Energy
 
-        public int DMG { get; set; } = 10;
-        public int ENG { get; set; } = 100;
+
+
+
         public bool HeroAttack(Monster monster)
         {
-            if (ENG >= 0)
+            if (ENG - 20 >= 0)
             {
-                ENG = ENG - 20;
-                monster.HP = monster.HP - DMG;
+                ENG = ENG - 20; //za jeden utok sa odcita 20 energy
+                monster.HP = monster.HP - DMG; //zrani monstera
                 return true;
             }
             else
             {
-                ENG = ENG + 50;
+                ENG = ENG + 50;  //ak nema dost energy, tak si ju trochu obnovi
                 return false;
-
-
-
             }
 
         }
+        public int SHD { get; set; } = 12;
     }
+
 }
+
+
+
+
+
+
+
+
+
