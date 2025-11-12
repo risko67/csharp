@@ -5,53 +5,61 @@ namespace Cvicenie_BattleSimulator
 {
     internal class Program
     {
-        private static void Main(string[] args)
+        static void Main(string[] args)
         {
-            Hero ourHero = new Hero();
-            Monster monster1 = new Monster("Goblin", 150, 15);
+            Random r = new Random();
 
-            int heroHPAfterFight = (ourHero.HP - monster1.DMG);
-            ourHero.HP = heroHPAfterFight;
-            Console.WriteLine(heroHPAfterFight);
+            Hero ourHero = new Hero();
+            Monster monster1 = new Monster("Goblin", 150, 20 );
+            Monster monster2 = new Monster("Ork", 200,16 );
+            Monster monster3 = new Monster("Dragon", 300, 30);
+            List<int> cisla = new List<int>();
+            List<Monster> monsters = new List<Monster>();
+            monsters.Add(monster1);
+            monsters.Add(monster2);
+            monsters.Add(monster3);
 
             while (true)
             {
-                //Hero dostal utok od monstra
-                monster1.MonsterAttack(ourHero);
-                Console.WriteLine("HERO:HP" + ourHero.HP);
-
-                //Monster dostal utok od hrdinu
-                bool wasAttack = ourHero.HeroAttack(monster1);
-                if (wasAttack)
-                {
-                    Console.WriteLine("MONSTER:HP" + monster1.HP);
-                }
-                else
-                {
-                    Console.WriteLine("---Not enough energy to attack! Restoring energy...");
-                    Console.WriteLine("HERO:energy" + ourHero.ENG);
-                }
+                int pocetMonstier = monsters.Count;
+                int ktora = r.Next(0, pocetMonstier);
+                monsters[ktora].MonsterAttack(ourHero);
                 if (ourHero.HP <= 0)
                 {
-                    Console.WriteLine("Hero is dead!");
+                    Console.WriteLine("Tvoj hrdina zomrel! Koniec hry.");
                     break;
-
-
                 }
-
-                if (monster1.HP <= 0)
+               
+                ourHero.HeroAttack(monsters[ktora]);
+                if (monsters[ktora].HP <= 0)
                 {
-                    Console.WriteLine("Monster is dead!");
-                    break;
-
-
+                   Console.WriteLine("Porazil si " + monsters[ktora].RaceType);
+               monsters.RemoveAt(ktora);
                 }
-            }
 
+                if (monsters.Count == 0)
+                {
+                    Console.WriteLine("Vsetky monstry boli porazene! Vyhral si hru.");
+                    break;
+                }
+                Console.WriteLine("Tvoj hrdina ma teraz " + ourHero.HP);
+                foreach (Monster monster in monsters)
+                {
+                    Console.WriteLine(monster.RaceType + " ma " + monster.HP);
+                }
+
+
+
+               
+
+
+
+
+                 
+            }
         }
     }
 }
-
 
 
 

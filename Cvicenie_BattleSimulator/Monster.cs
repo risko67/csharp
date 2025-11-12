@@ -8,9 +8,9 @@ namespace Cvicenie_BattleSimulator
 {
     internal class Monster
     {
-        public string RaceType { get; set; } //Monster race type (e.g.,Goblin,Orc,Troll)
-        public int HP { get; set; } //Health Points
-        public int DMG { get; set; } //Damage
+        public string RaceType { get; set; }
+        public int HP { get; set; }
+        public int DMG { get; set; }
 
         public Monster(string raceType, int hP, int dMG)
         {
@@ -21,22 +21,17 @@ namespace Cvicenie_BattleSimulator
 
         public void MonsterAttack(Hero hero)
         {
-            if (hero.SHD > DMG)
+            if (hero.Armor < DMG)
             {
-                hero.HP = hero.HP - 0;
+
+                int finaldamage = DMG - hero.Armor;
+                hero.HP -=  finaldamage;
+                Console.WriteLine(RaceType + " zautocil na " + hero.Name + " s damage " + finaldamage); 
+           
+            
+            
             }
-            else if (hero.SHD < DMG)
-            {
-                hero.HP = (hero.SHD + hero.HP) - DMG;
-            }
-
-
-
         }
-
-
-
-
     }
 }
 
