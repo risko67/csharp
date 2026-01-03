@@ -7,8 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Cvicenie_CookieClickerr\Cvicenie_CookieClickerr.csproj" />
-  </ItemGroup>
-
 </Project>
